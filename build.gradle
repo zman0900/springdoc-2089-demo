@@ -1,0 +1,36 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.9'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'zman0900.demo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+ext {
+	lombokVersion = '1.18.26'
+	springDocVersion = '1.6.14'
+	therapiVersion = '0.15.0'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation "org.springdoc:springdoc-openapi-javadoc:${springDocVersion}"
+	implementation "org.springdoc:springdoc-openapi-ui:${springDocVersion}"
+	implementation "com.github.therapi:therapi-runtime-javadoc:${therapiVersion}"
+	annotationProcessor "com.github.therapi:therapi-runtime-javadoc-scribe:${therapiVersion}"
+
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
