@@ -54,7 +54,8 @@ public class DemoController {
             @PathVariable final int id,
             // Adding this swagger RequestBody annotation without description is what triggers bug
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "This overrides the javadoc @param string, but works around #2089",
+                    // Without description here, Swagger UI fails to load (this works fine on 1.6.12)
+                    // On 1.6.12, this works fine and uses description from javadoc @param instead
                     content = @Content(schema = @Schema(implementation = DemoItem.class))
             )
             @RequestBody final JsonNode update
